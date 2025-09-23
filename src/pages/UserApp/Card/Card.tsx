@@ -1,11 +1,10 @@
-import { CardComponent, CardInfo, CardTitle } from "./styles";
-import type { UserData } from "../CreateEmployee/types";
-import Button from "components/Button/Button";
-
+import { CardComponent, CardInfo, CardTitle, JobPositionBlock } from "./styles"
+import type { UserData } from "../CreateEmployee/types"
+import Button from "components/Button/Button"
 
 interface CardProps {
-  userData: UserData;
-  onDelete?: () => void;
+  userData: UserData
+  onDelete?: () => void
 }
 
 function Card({ userData, onDelete }: CardProps) {
@@ -18,15 +17,23 @@ function Card({ userData, onDelete }: CardProps) {
       <CardTitle>Age</CardTitle>
       <CardInfo>{userData.age}</CardInfo>
       {/* Условный рендеринг */}
-      {userData.jobPosition && (
-        <>
-          <CardTitle>Job Position</CardTitle>
-          <CardInfo>{userData.jobPosition}</CardInfo>
-        </>
-      )}
+      {/* {userData.jobPosition && ( */}
+      <JobPositionBlock>
+        <CardTitle
+          style={{ visibility: userData.jobPosition ? "visible" : "hidden" }}
+        >
+          Job Position
+        </CardTitle>
+        <CardInfo
+          style={{ visibility: userData.jobPosition ? "visible" : "hidden" }}
+        >
+          {userData.jobPosition}
+        </CardInfo>
+      </JobPositionBlock>
+      {/* )} */}
       <Button onClick={onDelete} name="Delete" type="submit" isRed />
     </CardComponent>
-  );
+  )
 }
 
-export default Card;
+export default Card

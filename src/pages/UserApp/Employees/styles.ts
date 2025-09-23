@@ -1,17 +1,23 @@
-import styled from "@emotion/styled";
+import styled from "@emotion/styled"
 
 export const EmployeesWrapper = styled.div`
+  display: flex;
+  flex-direction: column; /* карточки сверху, кнопка снизу */
+  gap: 65px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+`
+
+export const Cards = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
   color: black;
   justify-content: center;
   align-items: center;
-  margin-left: 100px;
-`;
+`
 
-// export const ButtonControl = styled.div`
-//  display: flex;
-//  width: 700px;
-//  height: 70px;
-// `
+export const ButtonControl = styled.div`
+  width: 700px;
+`

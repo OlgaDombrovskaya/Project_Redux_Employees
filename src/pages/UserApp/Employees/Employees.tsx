@@ -1,43 +1,44 @@
-import Card from "pages/UserApp/Card/Card";
-import { EmployeesWrapper } from "./styles";
-import Button from "components/Button/Button";
-import { useAppDispatch, useAppSelector } from "store/hooks";
+import Card from "pages/UserApp/Card/Card"
+import Button from "components/Button/Button"
+import { useAppDispatch, useAppSelector } from "store/hooks"
 import {
   employeeMainActions,
   employeeMainSelectors,
-} from "store/redux/employeeMain/employeeMainSlice";
+} from "store/redux/employeeMain/employeeMainSlice"
+
+import { ButtonControl, Cards, EmployeesWrapper } from "./styles"
 
 function Employees() {
-  const dispatch = useAppDispatch();
-  const employees = useAppSelector(employeeMainSelectors.employees);
+  const dispatch = useAppDispatch()
+  const employees = useAppSelector(employeeMainSelectors.employees)
 
   const deleteEmployee = (index: number) => {
-    dispatch(employeeMainActions.deleteEmployee(index));
-  };
+    dispatch(employeeMainActions.deleteEmployee(index))
+  }
 
   const deleteAllCards = () => {
-    dispatch(employeeMainActions.deleteAllEmployees());
-  };
+    dispatch(employeeMainActions.deleteAllEmployees())
+  }
 
   return (
     <EmployeesWrapper>
-      {employees.map((employee, index) => (
-        <Card
-          key={index}
-          userData={employee}
-          onDelete={() => deleteEmployee(index)}
-        />
-      ))}
+      <Cards>
+        {employees.map((employee, index) => (
+          <Card
+            key={index}
+            userData={employee}
+            onDelete={() => deleteEmployee(index)}
+          />
+        ))}
+      </Cards>
 
       {!!employees.length && (
-        <Button
-          name="Remove All Employees"
-          isRed
-          onClick={deleteAllCards}
-        />
+        <ButtonControl>
+          <Button name="Remove All Employees" isRed onClick={deleteAllCards} />
+        </ButtonControl>
       )}
     </EmployeesWrapper>
-  );
+  )
 }
 
-export default Employees;
+export default Employees

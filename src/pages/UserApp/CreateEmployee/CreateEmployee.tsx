@@ -1,23 +1,23 @@
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import { useNavigate } from "react-router-dom";
+import { useFormik } from "formik"
+import * as Yup from "yup"
+import { useNavigate } from "react-router-dom"
 
-import Button from "components/Button/Button";
-import Input from "components/Input/input";
+import Button from "components/Button/Button"
+import Input from "components/Input/input"
 
 import {
   CreateEmployeeContainer,
   CreateEmployeeWrapper,
   InputsContainer,
-} from "./styles";
+} from "./styles"
 
-import { EMPLOYEE_FORM_VALUES, UserData } from "./types";
-import { useAppDispatch } from "store/hooks";
-import { employeeMainActions } from "store/redux/employeeMain/employeeMainSlice";
+import { EMPLOYEE_FORM_VALUES, UserData } from "./types"
+import { useAppDispatch } from "store/hooks"
+import { employeeMainActions } from "store/redux/employeeMain/employeeMainSlice"
 
 function CreateEmployee() {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
   const validationSchema = Yup.object().shape({
     [EMPLOYEE_FORM_VALUES.NAME]: Yup.string()
@@ -35,7 +35,7 @@ function CreateEmployee() {
     [EMPLOYEE_FORM_VALUES["JOB POSITION"]]: Yup.string()
       .min(2, "Job Position must be at least 2 characters")
       .max(30, "Job Position must be no more than 30 characters"),
-  });
+  })
 
   const formik = useFormik({
     initialValues: {
@@ -45,17 +45,17 @@ function CreateEmployee() {
       [EMPLOYEE_FORM_VALUES["JOB POSITION"]]: "",
     },
     validationSchema,
-    onSubmit: (values) => {
-    const newEmployee: UserData = {
-    name: values.name.trim(),
-    surname: values.surname.trim(),
-    age: values.age.trim(),
-    jobPosition: values.jobPosition.trim(),
-  };
-  dispatch(employeeMainActions.addEmployee(newEmployee));
-  navigate("/employees");
-},
-  });
+    onSubmit: values => {
+      const newEmployee: UserData = {
+        name: values.name.trim(),
+        surname: values.surname.trim(),
+        age: values.age.trim(),
+        jobPosition: values.jobPosition.trim(),
+      }
+      dispatch(employeeMainActions.addEmployee(newEmployee))
+      navigate("/employees")
+    },
+  })
 
   return (
     <CreateEmployeeWrapper>
@@ -104,7 +104,7 @@ function CreateEmployee() {
         <Button name="Create" type="submit" />
       </CreateEmployeeContainer>
     </CreateEmployeeWrapper>
-  );
+  )
 }
 
-export default CreateEmployee;
+export default CreateEmployee

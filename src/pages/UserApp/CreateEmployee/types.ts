@@ -1,5 +1,3 @@
-import { type Dispatch, type SetStateAction } from "react";
-
 export enum EMPLOYEE_FORM_VALUES {
   NAME = "name",
   SURNAME = "surname",
@@ -8,13 +6,8 @@ export enum EMPLOYEE_FORM_VALUES {
 }
 
 export interface UserData {
-  name: string;
-  surname: string;
-  age: string;
-  jobPosition: string;
-}
-
-export interface UserDataContext {
-  employees: UserData[];
-  setEmployees: Dispatch<SetStateAction<UserData[]>>;
+  name: string
+  surname: string
+  age: string
+  jobPosition: string
 }

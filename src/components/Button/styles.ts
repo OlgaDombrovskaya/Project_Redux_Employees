@@ -4,7 +4,10 @@ interface ButtonComponentProps {
   $isRed: boolean
 }
 
-const generateButtonColor = (isRed: boolean, disabled: boolean | undefined) => {
+const generateButtonColor = (
+  isRed: boolean,
+  disabled: boolean | undefined,
+): string => {
   if (disabled) {
     return "#acacacff"
   } else {
@@ -19,7 +22,7 @@ const generateButtonColor = (isRed: boolean, disabled: boolean | undefined) => {
 const generateButtonColorOnHover = (
   isRed: boolean,
   disabled: boolean | undefined,
-) => {
+): string => {
   if (disabled) {
     return "#acacacff"
   } else {
