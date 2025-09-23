@@ -2,18 +2,20 @@
 // import Lesson_16 from "lessons/Lesson_16/Lesson_16"
 import EmployeeMain from "pages/UserApp/EmployeeMain/EmployeeMain";
 import Layout from "pages/UserApp/Layout/Layout";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
 
-      //   <>
-      // {/* <Lesson_16 /> */}
-      // {/* <Homework_16 /> */}
-      // </>
-
-    <Layout>
-      <EmployeeMain />
-    </Layout>
+    //   <>
+    // {/* <Lesson_16 /> */}
+    // {/* <Homework_16 /> */}
+    // </>
+    <BrowserRouter>
+      <Layout>
+        <EmployeeMain />
+      </Layout>
+    </BrowserRouter>
   );
 }
 

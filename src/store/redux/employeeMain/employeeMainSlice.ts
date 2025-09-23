@@ -1,13 +1,16 @@
 import { createAppSlice } from "store/createAppSlice"
+import { PayloadAction } from "@reduxjs/toolkit";
+import { Employee } from "./types"
 
-import { EmployeeMainSliceState } from "./types"
-
-const employeeInitialState = {
-  name: "",
-  surname: "",
-  age: "",
-  jobPosition: "",
+// Описываем тип всего состояния этого слайса.(храним массив сотрудников)
+export interface EmployeeMainSliceState {
+    employees: Employee[];
 }
+
+//  Начальное состояние: по умолчанию список сотрудников пустой.
+const employeeInitialState: EmployeeMainSliceState = {
+    employees: [],
+};
 
 export const employeeMainSlice = createAppSlice({
     //это имя используется для нахождения событий слайса
@@ -17,19 +20,25 @@ export const employeeMainSlice = createAppSlice({
 
     //функция которая возвращает объект содержащий функции которые будут изменять стэйт
     reducers: create => ({
-     employee: create.reducer((state: EmployeeMainSliceState ) => {
-        state.name;
-        state.surname;
-        state.age;
-        state.jobPosition;
-      }),
-        reset: create.reducer(() => employeeInitialState),
+        addEmployee: create.reducer((state: EmployeeMainSliceState, action: PayloadAction<Employee>) => {
+            state.employees.push(action.payload);
+        }
+        ),
+
+        deleteEmployee: create.reducer(
+            (state: EmployeeMainSliceState, action: PayloadAction<number>) => {
+                state.employees = state.employees.filter((_Employee, index) => index !== action.payload);
+            }
+        ),
+        deleteAllEmployees: create.reducer((state: EmployeeMainSliceState) => {
+            state.employees = []
+        }),
     }),
 
     // подписка на хранилище в store
     selectors: {
-        employee: (state: EmployeeMainSliceState) => {
-            return state
+        employees: (state: EmployeeMainSliceState) => {
+            return state.employees
         }
     },
 });

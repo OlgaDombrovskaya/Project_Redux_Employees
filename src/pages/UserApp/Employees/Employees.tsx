@@ -1,19 +1,22 @@
-import { useContext } from "react";
-import { EmployeeContext } from "../EmployeeMain/EmployeeContext";
 import Card from "pages/UserApp/Card/Card";
-import { EmployeesWrapper} from "./styles";
+import { EmployeesWrapper } from "./styles";
 import Button from "components/Button/Button";
+import { useAppDispatch, useAppSelector } from "store/hooks";
+import {
+  employeeMainActions,
+  employeeMainSelectors,
+} from "store/redux/employeeMain/employeeMainSlice";
 
 function Employees() {
-  const { employees, setEmployees } = useContext(EmployeeContext);
+  const dispatch = useAppDispatch();
+  const employees = useAppSelector(employeeMainSelectors.employees);
 
   const deleteEmployee = (index: number) => {
-    const updated = employees.filter((_emoloyees, i) => i !== index);
-    setEmployees(updated);
+    dispatch(employeeMainActions.deleteEmployee(index));
   };
 
-    const deleteAllCards = () => {
-    setEmployees([]);
+  const deleteAllCards = () => {
+    dispatch(employeeMainActions.deleteAllEmployees());
   };
 
   return (
@@ -26,14 +29,12 @@ function Employees() {
         />
       ))}
 
-       {!!employees.length && (
-        // <ButtonControl>
-          <Button
-            name="Remove All Employees"
-            isRed
-            onClick={deleteAllCards}
-          />
-        // </ButtonControl>
+      {!!employees.length && (
+        <Button
+          name="Remove All Employees"
+          isRed
+          onClick={deleteAllCards}
+        />
       )}
     </EmployeesWrapper>
   );

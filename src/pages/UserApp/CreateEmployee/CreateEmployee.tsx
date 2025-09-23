@@ -1,10 +1,9 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Button from "components/Button/Button";
-import Input from "components/Input/Input";
+import Input from "components/Input/input";
 
 import {
   CreateEmployeeContainer,
@@ -12,11 +11,12 @@ import {
   InputsContainer,
 } from "./styles";
 
-import { type UserData, EMPLOYEE_FORM_VALUES } from "./types";
-import { EmployeeContext } from "../EmployeeMain/EmployeeContext";
+import { EMPLOYEE_FORM_VALUES, UserData } from "./types";
+import { useAppDispatch } from "store/hooks";
+import { employeeMainActions } from "store/redux/employeeMain/employeeMainSlice";
 
 function CreateEmployee() {
-  const { setEmployees } = useContext(EmployeeContext);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
@@ -46,15 +46,15 @@ function CreateEmployee() {
     },
     validationSchema,
     onSubmit: (values) => {
-      const newEmployee: UserData = {
-        name: values.name.trim(),
-        surname: values.surname.trim(),
-        age: values.age.trim(),
-        jobPosition: values.jobPosition.trim(),
-      };
-      setEmployees((previousArray) => [...previousArray, newEmployee]);
-      navigate("/employees");
-    },
+    const newEmployee: UserData = {
+    name: values.name.trim(),
+    surname: values.surname.trim(),
+    age: values.age.trim(),
+    jobPosition: values.jobPosition.trim(),
+  };
+  dispatch(employeeMainActions.addEmployee(newEmployee));
+  navigate("/employees");
+},
   });
 
   return (
