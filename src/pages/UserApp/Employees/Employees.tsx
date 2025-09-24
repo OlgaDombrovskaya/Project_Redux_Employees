@@ -6,15 +6,11 @@ import {
   employeeMainSelectors,
 } from "store/redux/employeeMain/employeeMainSlice"
 
-import { ButtonControl, Cards, EmployeesWrapper } from "./styles"
+import { ButtonControl, CardBox, Cards, EmployeesWrapper } from "./styles"
 
 function Employees() {
   const dispatch = useAppDispatch()
   const employees = useAppSelector(employeeMainSelectors.employees)
-
-  const deleteEmployee = (index: number) => {
-    dispatch(employeeMainActions.deleteEmployee(index))
-  }
 
   const deleteAllCards = () => {
     dispatch(employeeMainActions.deleteAllEmployees())
@@ -23,12 +19,15 @@ function Employees() {
   return (
     <EmployeesWrapper>
       <Cards>
-        {employees.map((employee, index) => (
-          <Card
+        {employees.map((_employee, index) => (
+          <CardBox
             key={index}
-            userData={employee}
-            onDelete={() => deleteEmployee(index)}
-          />
+            onClick={() =>
+              dispatch(employeeMainActions.setSelectedIndex(index))
+            }
+          >
+            <Card />
+          </CardBox>
         ))}
       </Cards>
 
