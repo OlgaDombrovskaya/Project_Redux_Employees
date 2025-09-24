@@ -12,8 +12,8 @@ function Employees() {
   const dispatch = useAppDispatch()
   const employees = useAppSelector(employeeMainSelectors.employees)
 
-    const deleteEmployee = (index: number) => {
-    dispatch(employeeMainActions.deleteEmployee(index))
+  const deleteEmployee = (id: string) => {
+    dispatch(employeeMainActions.deleteEmployee(id))
   }
 
   const deleteAllCards = () => {
@@ -22,12 +22,12 @@ function Employees() {
 
   return (
     <EmployeesWrapper>
-    <Cards>
-        {employees.map((employee, index) => (
+      <Cards>
+        {employees.map(employee => (
           <Card
-            key={index}
+            key={employee.id}
             userData={employee}
-            onDelete={() => deleteEmployee(index)}
+            onDelete={() => deleteEmployee(employee.id)}
           />
         ))}
       </Cards>

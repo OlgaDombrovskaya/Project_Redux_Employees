@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 
 import Button from "components/Button/Button"
 import Input from "components/Input/input"
+import { v4 as uuidv4 } from "uuid"
 
 import {
   CreateEmployeeContainer,
@@ -11,9 +12,10 @@ import {
   InputsContainer,
 } from "./styles"
 
-import { EMPLOYEE_FORM_VALUES, UserData } from "./types"
+import { EMPLOYEE_FORM_VALUES } from "./types"
 import { useAppDispatch } from "store/hooks"
 import { employeeMainActions } from "store/redux/employeeMain/employeeMainSlice"
+import { Employee } from "store/redux/employeeMain/types"
 
 function CreateEmployee() {
   const dispatch = useAppDispatch()
@@ -46,7 +48,8 @@ function CreateEmployee() {
     },
     validationSchema,
     onSubmit: values => {
-      const newEmployee: UserData = {
+      const newEmployee: Employee = {
+        id: uuidv4(),
         name: values.name.trim(),
         surname: values.surname.trim(),
         age: values.age.trim(),

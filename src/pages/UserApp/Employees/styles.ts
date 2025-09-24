@@ -2,7 +2,7 @@ import styled from "@emotion/styled"
 
 export const EmployeesWrapper = styled.div`
   display: flex;
-  flex-direction: column; /* карточки сверху, кнопка снизу */
+  flex-direction: column;
   gap: 65px;
   align-items: center;
   justify-content: center;
