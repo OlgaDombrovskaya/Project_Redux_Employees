@@ -1,4 +1,4 @@
-import { CardComponent, CardInfo, CardTitle, JobPositionBlock } from "./styles"
+import { CardComponent, CardInfo, CardTitle } from "./styles"
 import type { UserData } from "../CreateEmployee/types"
 import Button from "components/Button/Button"
 
@@ -16,24 +16,16 @@ function Card({ userData, onDelete }: CardProps) {
       <CardInfo>{userData.surname}</CardInfo>
       <CardTitle>Age</CardTitle>
       <CardInfo>{userData.age}</CardInfo>
-      {/* Условный рендеринг */}
-      {/* {userData.jobPosition && ( */}
-      <JobPositionBlock>
-        <CardTitle
-          style={{ visibility: userData.jobPosition ? "visible" : "hidden" }}
-        >
-          Job Position
-        </CardTitle>
-        <CardInfo
-          style={{ visibility: userData.jobPosition ? "visible" : "hidden" }}
-        >
-          {userData.jobPosition}
-        </CardInfo>
-      </JobPositionBlock>
-      {/* )} */}
+       {/* Условный рендеринг */}
+      {userData.jobPosition && (
+        <>
+          <CardTitle>Job Position</CardTitle>
+          <CardInfo>{userData.jobPosition}</CardInfo>
+        </>
+      )}
       <Button onClick={onDelete} name="Delete" type="submit" isRed />
     </CardComponent>
-  )
+  );
 }
 
-export default Card
+export default Card;
