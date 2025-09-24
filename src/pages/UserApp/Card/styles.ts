@@ -5,7 +5,7 @@ export const CardComponent = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 570px;
-  height: 590px;
+  min-height: 590px;
   border: 1px solid black;
   padding: 60px;
   border-radius: 4px;
