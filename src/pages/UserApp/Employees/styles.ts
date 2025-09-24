@@ -21,10 +21,3 @@ export const Cards = styled.div`
 export const ButtonControl = styled.div`
   width: 700px;
 `
-export const CardBox = styled.div`
- display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 570px;
-  min-height: 590px;
-`

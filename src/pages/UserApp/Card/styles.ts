@@ -23,3 +23,10 @@ export const CardInfo = styled.a`
   color: #3d3c3cff;
   font-weight: bold;
 `
+
+export const JobPositionBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 20px;
+`
